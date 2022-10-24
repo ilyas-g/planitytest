@@ -14,8 +14,6 @@ function App() {
   let innerWidth = window.innerWidth;
   let innerHeight = window.innerHeight;
 
-
-
   function handleResize() {
     console.log('resized to: ', window.innerWidth, 'x', window.innerHeight);
   }
@@ -26,29 +24,31 @@ function App() {
   return (
     <div className="App">
 
-      {/* <div className='box'>
-        1
-      </div> */}
-
       {inputs.sort(sortable).map((input, index) => {
-
-        let boxStyle = {
-          backgroundColor: "#4a5771",
-          color: "#ffffff",
-          border: "1px solid #ffffff",
-          marginBottom: '20px',
-          width: index === 0 ? innerWidth : innerWidth / (index + 1),
-          // width: innerWidth / (index + 1),
-          // width: innerWidth,
-          height: innerHeight,
-        };
-
-        // boxStyle.width = innerWidth / index;
-        // console.log(boxStyle.width);
         return (
-          <div style={boxStyle} key={index}>
-            <p>{boxStyle.width}</p>
-            {input.id} - {index}
+          <div className='bloc' key={index}>
+
+            {input.map((inp, index) => {
+
+              let boxStyle = {
+                backgroundColor: "#4a5771",
+                color: "#ffffff",
+                border: "1px solid #ffffff",
+                width: index === 0 ? innerWidth : innerWidth / (index + 1),
+                height: innerHeight,
+              };
+              return (
+                <div style={boxStyle} key={index}>
+                  <p>{boxStyle.width}</p>
+                  {inp.id} - {index}
+                </div>
+              );
+            })}
+
+            {/* <div style={boxStyle} key={index}>
+              <p>{boxStyle.width}</p>
+              {input.id} - {index}
+            </div> */}
           </div>
         );
       })}
